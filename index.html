@@ -27,11 +27,11 @@
         <!-- Main CSS -->
         <link rel="stylesheet" href="assets/css/main.css">
         
-        <!-- Themes -->
-        <link rel="stylesheet" href="assets/css/themes.light.css">
-        <!--<link rel="stylesheet" href="assets/css/themes.dark.css">-->
-        
+        <!-- Language Switch CSS -->
+        <link rel="stylesheet" href="assets/css/language-switch.css">
 
+        <!-- Theme Manager (loads themes dynamically) -->
+        <script src="assets/js/theme-manager.js"></script>
 
         <!-- jQuery -->
         <script src="assets/js/jquery.min.js"></script>
@@ -48,86 +48,21 @@
         <!-- Main JS -->
         <script src="assets/js/main.js"></script>
 
-        <!-- Language Switch CSS -->
-        <style>
-            .language-switch {
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                z-index: 1000;
-                background: rgba(255, 255, 255, 0.9);
-                border: 1px solid #ddd;
-                border-radius: 5px;
-                padding: 8px 12px;
-                font-size: 14px;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                backdrop-filter: blur(10px);
-            }
-            
-            .language-switch:hover {
-                background: rgba(255, 255, 255, 1);
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            }
-            
-            .language-switch .lang-option {
-                text-decoration: none;
-                color: #666;
-                margin: 0 3px;
-                transition: color 0.3s ease;
-            }
-            
-            .language-switch .lang-option.active {
-                color: #007bff;
-                font-weight: bold;
-            }
-            
-            .language-switch .lang-option:hover {
-                color: #007bff;
-            }
-            
-            .language-switch .separator {
-                color: #ccc;
-                margin: 0 3px;
-            }
-            
-            /* Default: show English, hide Chinese */
-            [lang="zh"] {
-                display: none;
-            }
-            
-            [lang="en"] {
-                display: block;
-            }
-            
-            /* When Chinese is selected: show Chinese, hide English */
-            body[data-lang="zh"] [lang="en"] {
-                display: none;
-            }
-            
-            body[data-lang="zh"] [lang="zh"] {
-                display: block;
-            }
-            
-            body[data-lang="zh"] [lang="zh"].inline {
-                display: inline;
-            }
-            
-            body[data-lang="zh"] [lang="zh"].inline-block {
-                display: inline-block;
-            }
-        </style>
+        <!-- Language Switch JS -->
+        <script src="assets/js/language-switch.js"></script>
 
     </head>
 
     
     <body>
 
-        <!-- Language Switch Button -->
+        <!-- Language & Theme Switch Buttons -->
         <div class="language-switch">
             <a href="#" class="lang-option active" data-lang="en">EN</a>
             <span class="separator">|</span>
             <a href="#" class="lang-option" data-lang="zh">中文</a>
+            <span class="separator">|</span>
+            <a href="#" class="theme-toggle" id="theme-toggle" title="Toggle theme">🌓</a>
         </div>
 
         <div class="c-preloader  js-preloader">
@@ -1426,87 +1361,6 @@
 
 
         </div><!-- /c-main-container -->
-
-        <!-- Language Switch JavaScript -->
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const langButtons = document.querySelectorAll('.lang-option');
-                const body = document.body;
-                
-                // Function to detect user's preferred language
-                function detectUserLanguage() {
-                    // First check if user has a saved preference
-                    const savedLang = localStorage.getItem('preferred-language');
-                    if (savedLang) {
-                        return savedLang;
-                    }
-                    
-                    // Get browser language
-                    const browserLang = navigator.language || navigator.userLanguage;
-                    console.log('Browser language:', browserLang);
-                    
-                    // Check for Chinese variants
-                    if (browserLang.startsWith('zh')) {
-                        return 'zh';
-                    }
-                    
-                    // Check browser languages array for Chinese
-                    const browserLanguages = navigator.languages || [browserLang];
-                    for (let lang of browserLanguages) {
-                        if (lang.startsWith('zh')) {
-                            return 'zh';
-                        }
-                    }
-                    
-                    // Try to detect location-based preference (optional)
-                    // You could also add timezone-based detection
-                    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-                    console.log('User timezone:', timezone);
-                    
-                    // If timezone suggests Chinese-speaking region
-                    if (timezone.includes('Shanghai') || timezone.includes('Hong_Kong') || 
-                        timezone.includes('Taipei') || timezone.includes('Macau')) {
-                        return 'zh';
-                    }
-                    
-                    // Default to English
-                    return 'en';
-                }
-                
-                // Load user's preferred language (auto-detected or saved)
-                const defaultLang = detectUserLanguage();
-                console.log('Detected/Selected language:', defaultLang);
-                switchLanguage(defaultLang);
-                
-                langButtons.forEach(button => {
-                    button.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        const lang = this.getAttribute('data-lang');
-                        switchLanguage(lang);
-                        localStorage.setItem('preferred-language', lang);
-                    });
-                });
-                
-                function switchLanguage(lang) {
-                    console.log('Switching to language:', lang);
-                    // Update body data attribute
-                    body.setAttribute('data-lang', lang);
-                    
-                    // Update active button
-                    langButtons.forEach(btn => {
-                        btn.classList.remove('active');
-                        if (btn.getAttribute('data-lang') === lang) {
-                            btn.classList.add('active');
-                        }
-                    });
-                    
-                    // Update HTML lang attribute
-                    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
-                    console.log('Body data-lang:', body.getAttribute('data-lang'));
-                }
-            });
-        </script>
-
     </body>
 
 </html>

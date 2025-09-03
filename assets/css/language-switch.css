@@ -1,0 +1,103 @@
+/* Language Switch CSS */
+.language-switch {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.language-switch:hover {
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.language-switch .lang-option {
+    text-decoration: none;
+    color: #666;
+    margin: 0 3px;
+    transition: color 0.3s ease;
+}
+
+.language-switch .lang-option.active {
+    color: #e0a80d;
+    font-weight: bold;
+}
+
+.language-switch .lang-option:hover {
+    color: #e0a80d;
+}
+
+.language-switch .separator {
+    color: #ccc;
+    margin: 0 3px;
+}
+
+.language-switch .theme-toggle {
+    text-decoration: none;
+    color: #666;
+    margin: 0 3px;
+    transition: color 0.3s ease;
+    font-size: 16px;
+}
+
+.language-switch .theme-toggle:hover {
+    color: #e0a80d;
+    transform: scale(1.1);
+}
+
+/* Dark theme styles for language switch */
+body[data-theme="dark"] .language-switch {
+    background: rgba(45, 46, 46, 0.9);
+    border: 1px solid #555;
+}
+
+body[data-theme="dark"] .language-switch:hover {
+    background: rgba(45, 46, 46, 1);
+    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+}
+
+body[data-theme="dark"] .language-switch .lang-option {
+    color: #a4a5a6;
+}
+
+body[data-theme="dark"] .language-switch .separator {
+    color: #666;
+}
+
+body[data-theme="dark"] .language-switch .theme-toggle {
+    color: #a4a5a6;
+}
+
+/* Default: show English, hide Chinese */
+[lang="zh"] {
+    display: none;
+}
+
+[lang="en"] {
+    display: block;
+}
+
+/* When Chinese is selected: show Chinese, hide English */
+body[data-lang="zh"] [lang="en"] {
+    display: none;
+}
+
+body[data-lang="zh"] [lang="zh"] {
+    display: block;
+}
+
+body[data-lang="zh"] [lang="zh"].inline {
+    display: inline;
+}
+
+body[data-lang="zh"] [lang="zh"].inline-block {
+    display: inline-block;
+}
