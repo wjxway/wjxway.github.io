@@ -48,10 +48,87 @@
         <!-- Main JS -->
         <script src="assets/js/main.js"></script>
 
+        <!-- Language Switch CSS -->
+        <style>
+            .language-switch {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 1000;
+                background: rgba(255, 255, 255, 0.9);
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                padding: 8px 12px;
+                font-size: 14px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                backdrop-filter: blur(10px);
+            }
+            
+            .language-switch:hover {
+                background: rgba(255, 255, 255, 1);
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .language-switch .lang-option {
+                text-decoration: none;
+                color: #666;
+                margin: 0 3px;
+                transition: color 0.3s ease;
+            }
+            
+            .language-switch .lang-option.active {
+                color: #007bff;
+                font-weight: bold;
+            }
+            
+            .language-switch .lang-option:hover {
+                color: #007bff;
+            }
+            
+            .language-switch .separator {
+                color: #ccc;
+                margin: 0 3px;
+            }
+            
+            /* Default: show English, hide Chinese */
+            [lang="zh"] {
+                display: none;
+            }
+            
+            [lang="en"] {
+                display: block;
+            }
+            
+            /* When Chinese is selected: show Chinese, hide English */
+            body[data-lang="zh"] [lang="en"] {
+                display: none;
+            }
+            
+            body[data-lang="zh"] [lang="zh"] {
+                display: block;
+            }
+            
+            body[data-lang="zh"] [lang="zh"].inline {
+                display: inline;
+            }
+            
+            body[data-lang="zh"] [lang="zh"].inline-block {
+                display: inline-block;
+            }
+        </style>
+
     </head>
 
     
     <body>
+
+        <!-- Language Switch Button -->
+        <div class="language-switch">
+            <a href="#" class="lang-option active" data-lang="en">EN</a>
+            <span class="separator">|</span>
+            <a href="#" class="lang-option" data-lang="zh">中文</a>
+        </div>
 
         <div class="c-preloader  js-preloader">
             <div class="c-preloader__spinner  t-preloader__spinner"></div>
@@ -96,17 +173,25 @@
                                             <div class="c-brand">
                                                 <h1 class="c-brand__title  t-title">
                                                     <span class="c-brand__sizer">
-                                                        <span class="a-header  c-brand__first-word  t-title__first-word">
-                                                            Jingxian
+                                                        <span lang="en">
+                                                            <span class="a-header  c-brand__first-word  t-title__first-word">
+                                                                Jingxian
+                                                            </span>
+                                                            <span class="a-header  c-brand__second-word  t-title__second-word">
+                                                                Wang
+                                                            </span>
                                                         </span>
-                                                        <span class="a-header  c-brand__second-word  t-title__second-word">
-                                                            Wang
+                                                        <span lang="zh">
+                                                            <span class="a-header  c-brand__second-word  t-title__second-word">
+                                                                王竞先
+                                                            </span>
                                                         </span>
                                                     </span>
                                                 </h1>
                                                 <h2 class="a-header  c-brand__sub-title  t-sub-title">
                                                     <span class="c-brand__sizer">
-                                                        Ph.D. Student in Mechanical Engineering
+                                                        <span lang="en">Ph.D. Student in Mechanical Engineering</span>
+                                                        <span lang="zh">机械工程专业在读博士研究生</span>
                                                     </span>
                                                 </h2>
                                             </div><!-- /c-brand -->
@@ -152,14 +237,26 @@
                                             <div class="o-grid__col-md-3  o-grid__col-sm-6">
                                                 <div class="a-header  o-content">
                                                     <div class="o-content__body">
-                                                        <a href="https://maps.google.com/?q=Evanston,IL,USA" target="_blank" class="t-link-container">
-                                                            <h4>Location</h4>
-                                                            <p>
-                                                                <span class="t-link-container__item--blended">
-                                                                    Evanston, IL, USA
-                                                                </span>
-                                                            </p>
-                                                        </a><!-- /o-link-container -->
+                                                        <span lang="en">
+                                                            <a href="https://maps.google.com/?q=Evanston,IL,USA" target="_blank" class="t-link-container">
+                                                                <h4>Location</h4>
+                                                                <p>
+                                                                    <span class="t-link-container__item--blended">
+                                                                        Evanston, IL, USA
+                                                                    </span>
+                                                                </p>
+                                                            </a><!-- /o-link-container -->
+                                                        </span>
+                                                        <span lang="zh">
+                                                            <a href="https://map.baidu.com/poi/%E5%9F%83%E6%96%87%E6%96%AF%E9%A1%BF/@-9761453.416697223,5139212.2748521175,15.4z" target="_blank" class="t-link-container">
+                                                                <h4>地址</h4>
+                                                                <p>
+                                                                    <span class="t-link-container__item--blended">
+                                                                        美国，伊利诺伊州
+                                                                    </span>
+                                                                </p>
+                                                            </a><!-- /o-link-container -->
+                                                        </span>
                                                     </div>
                                                 </div><!-- /o-content -->
                                             </div><!-- /o-grid__col -->
@@ -167,14 +264,26 @@
                                             <div class="o-grid__col-md-5  o-grid__col-sm-6">
                                                 <div class="a-header  o-content">
                                                     <div class="o-content__body">
-                                                        <a href="mailto:jingxianwang2026@u.northwestern.edu" target="_blank" class="t-link-container">
-                                                            <h4>Email</h4>
-                                                            <p>
-                                                                <span class="t-link-container__item--blended">
-                                                                    jingxianwang2026@u.northwestern.edu
-                                                                </span>
-                                                            </p>
-                                                        </a><!-- /o-link-container -->
+                                                        <span lang="en">
+                                                            <a href="mailto:jingxianwang2026@u.northwestern.edu" target="_blank" class="t-link-container">
+                                                                <h4>Email</h4>
+                                                                <p>
+                                                                    <span class="t-link-container__item--blended">
+                                                                        jingxianwang2026@u.northwestern.edu
+                                                                    </span>
+                                                                </p>
+                                                            </a><!-- /o-link-container -->
+                                                        </span>
+                                                        <span lang="zh">
+                                                            <a href="mailto:wjxway@163.com" target="_blank" class="t-link-container">
+                                                                <h4>邮箱</h4>
+                                                                <p>
+                                                                    <span class="t-link-container__item--blended">
+                                                                        wjxway@163.com
+                                                                    </span>
+                                                                </p>
+                                                            </a><!-- /o-link-container -->
+                                                        </span>
                                                     </div>
                                                 </div><!-- /o-content -->
                                             </div><!-- /o-grid__col -->
@@ -183,7 +292,7 @@
                                                 <div class="a-header  o-content">
                                                     <div class="o-content__body">
                                                         <a href="tel:+1-872-810-5660" target="_blank" class="t-link-container">
-                                                            <h4>Phone</h4>
+                                                            <h4><span lang="en">Phone</span><span lang="zh">电话</span></h4>
                                                             <p>
                                                                 <span class="t-link-container__item--blended">
                                                                     +1-(872)-810-5660
@@ -224,7 +333,8 @@
                         <header class="o-section__header  t-section__header">
                             <div class="o-content">
                                 <h2 class="o-section__heading">
-                                    Intro
+                                    <span lang="en">Intro</span>
+                                    <span lang="zh">个人简介</span>
                                 </h2>
                                 <div class="o-content__body  o-section__description">
                                     <!-- What I am all about. -->
@@ -237,21 +347,37 @@
                             <div class="o-content">
                                 <div class="c-intro">
                                     <div class="o-content__body">
-                                        <p>
-                                            I am a Ph.D. student in Mechanical Engineering at Northwestern University, advised by Prof. Michael Rubenstein. My research focuses on full-stack novel robot design, minimalism in robotics, swarm robotics, and modular robotics. I am particularly interested in developing innovative robotic systems that challenge conventional design paradigms through creative hardware solutions and intelligent control algorithms.
-                                        </p>
-                                        <p>
-                                            Before starting my Ph.D., I obtained my Bachelor of Science in Physics from the School of Physics, Peking University in 2021, where I gained a solid physics foundation.
-                                        </p>
-                                        <p>
-                                            I am Gold Medalist in the 18th Asian Physics Olympiad (APhO) in 2017.
-                                        </p>
-                                        <p style="margin-top: 2rem;">
-                                            <strong>Download Resume:</strong>&nbsp;&nbsp;&nbsp;
-                                            <a href="assets/resume/Resume of Jingxian Wang_EN.pdf" target="_blank" style="margin-right: 1rem;">English Version</a> |
-                                            <a href="assets/resume/Resume of Jingxian Wang_CHN.pdf" target="_blank" style="margin-left: 1rem;">中文版本</a>
-                                        </p>
-
+                                        <div lang="en">
+                                            <p>
+                                                I am a Ph.D. student in Mechanical Engineering at Northwestern University, advised by Prof. Michael Rubenstein. My research focuses on full-stack novel robot design, minimalism in robotics, swarm robotics, and modular robotics. I am particularly interested in developing innovative robotic systems that challenge conventional design paradigms through creative hardware solutions and intelligent control algorithms.
+                                            </p>
+                                            <p>
+                                                Before starting my Ph.D., I obtained my Bachelor of Science in Physics from the School of Physics, Peking University in 2021, where I gained a solid physics foundation.
+                                            </p>
+                                            <p>
+                                                I am Gold Medalist in the 18th Asian Physics Olympiad (APhO) in 2017.
+                                            </p>
+                                            <p style="margin-top: 2rem;">
+                                                <strong>Download Resume:</strong>&nbsp;&nbsp;&nbsp;
+                                                <a href="assets/resume/Resume of Jingxian Wang_EN.pdf" target="_blank" style="margin-right: 1rem;">English Version</a> |
+                                                <a href="assets/resume/Resume of Jingxian Wang_CHN.pdf" target="_blank" style="margin-left: 1rem;">中文版本</a>
+                                            </p>
+                                        </div>
+                                        <div lang="zh">
+                                            <p>
+                                                我是西北大学机械工程系在读博士研究生，师从Michael Rubenstein教授。我的研究涉及全栈新型机器人设计、极简机器人、集群机器人和模块化机器人。我的兴趣在于通过独特的硬件解决方案和控制算法开发来设计创新性的机器人系统。
+                                            </p>
+                                            <p>
+                                                我于2021年从北京大学物理学院获得物理学学士学位，拥有者扎实的物理学基础。
+                                            </p>
+                                            <p>
+                                                我是第18届亚洲物理奥林匹克竞赛(APhO)金牌得主。
+                                            </p>
+                                            <p style="margin-top: 2rem;">
+                                                <strong>简历：</strong>&nbsp;&nbsp;&nbsp;
+                                                <a href="assets/resume/Resume of Jingxian Wang_CHN.pdf" target="_blank" style="margin-left: 1rem;">中文版本</a> | <a href="assets/resume/Resume of Jingxian Wang_EN.pdf" target="_blank" style="margin-right: 1rem;">English Version</a>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -280,7 +406,8 @@
                         <header class="o-section__header  t-section__header">
                             <div class="o-content">
                                 <h2 class="o-section__heading">
-                                    Research Projects
+                                    <span lang="en">Research Projects</span>
+                                    <span lang="zh">科研项目</span>
                                 </h2>
                                 <div class="o-content__body  o-section__description">
                                     <!-- Research publications and papers -->
@@ -304,13 +431,24 @@
                                 <div class="o-grid__col-md-8">
                                     <div class="o-media  o-media--block  o-content">
                                         <div class="o-media__body  o-content__body">
-                                            <h3>Single Motor Drone Swarm System</h3>
-                                            <h5>Fall 2021 – Present</h5>
-                                            <p><strong>Major Collaborator:</strong> <a href="https://users.cs.northwestern.edu/~mrubenst/" target="_blank">Prof. Michael Rubenstein</a></p>
-                                            <p style="text-align:justify;">
-                                                This research demonstrates the first single motor drone swarm capable of autonomous flight using peer-to-peer (P2P) communication and sensing. Each drone, weighing only 20g and containing just one moving part, can fly independently with full control, featuring onboard P2P communication and precise positioning enabled by a novel infrared-based system. The drone is 10x lighter than all previous systems with comparable P2P positioning accuracy.
-                                            </p>
-                                            <p><a href="https://www.roboticsproceedings.org/rss20/p102.html" target="_blank">Paper</a> | <a href="https://github.com/wjxway/Spinon" target="_blank">Source Code</a> | <a href="https://www.bilibili.com/video/BV1M1YSewE2n" target="_blank">Video @ Bilibili</a></p>
+                                            <div lang="en">
+                                                <h3>Single Motor Drone Swarm System</h3>
+                                                <h5>Fall 2021 – Present</h5>
+                                                <p><strong>Major Collaborator:</strong> <a href="https://users.cs.northwestern.edu/~mrubenst/" target="_blank">Prof. Michael Rubenstein</a></p>
+                                                <p style="text-align:justify;">
+                                                    This research demonstrates the first single motor drone swarm capable of autonomous flight using peer-to-peer (P2P) communication and sensing. Each drone, weighing only 20g and containing just one moving part, can fly independently with full control, featuring onboard P2P communication and precise positioning enabled by a novel infrared-based system. The drone is 10x lighter than all previous systems with comparable P2P positioning accuracy.
+                                                </p>
+                                                <p><a href="https://www.roboticsproceedings.org/rss20/p102.html" target="_blank">Paper</a> | <a href="https://github.com/wjxway/Spinon" target="_blank">Source Code</a> | <a href="https://www.bilibili.com/video/BV1M1YSewE2n" target="_blank">Video @ Bilibili</a></p>
+                                            </div>
+                                            <div lang="zh">
+                                                <h3>单旋翼无人机群系统开发</h3>
+                                                <h5>2021年秋 – 至今</h5>
+                                                <p><strong>主要合作者：</strong> <a href="https://users.cs.northwestern.edu/~mrubenst/" target="_blank">Michael Rubenstein教授</a></p>
+                                                <p style="text-align:justify;">
+                                                    该研究开发了首个可自主飞行的单旋翼无人机群并实现了无人机间的相互通信与感知。每架单旋翼无人机仅重20克且仅有一个运动部件，具备自主可控飞行能力，并可依靠创新的红外系统实现高精度定位、通信、与环境感知。该无人机重量比现有的有类似点对点定位同类系统轻10倍。
+                                                </p>
+                                                <p><a href="https://www.roboticsproceedings.org/rss20/p102.html" target="_blank">论文</a> | <a href="https://github.com/wjxway/Spinon" target="_blank">源码</a> | <a href="https://www.bilibili.com/video/BV1M1YSewE2n" target="_blank">B站视频</a></p>
+                                            </div>
                                         </div>
                                     </div><!-- /o-media o-content -->
                                 </div><!-- /o-grid__col -->
@@ -327,13 +465,24 @@
                                 <div class="o-grid__col-md-8">
                                     <div class="o-media  o-media--block  o-content">
                                         <div class="o-media__body  o-content__body" >
-                                            <h3>Reconfigurable Legged Metamachine</h3>
-                                            <h5>Spring 2024 – Present</h5>
-                                            <p><strong>Major Collaborator:</strong> <a href="https://chenyu.dev/" target="_blank">Chen Yu</a>, <a href="https://cappuccinopanda.github.io/website/" target="_blank">David Matthews</a>, <a href="https://skriegman.github.io/" target="_blank">Prof. Sam Kriegman</a></p>
-                                            <p style="text-align:justify;">
-                                                This research introduces autonomous modular legs: agile yet minimal, single-degree-of-freedom jointed links that can learn complex dynamic behaviors and may be freely attached to form legged metamachines at the meter scale. This research enables rapid repair, redesign, and recombination of highly dynamic modular agents that move quickly and acrobatically through unstructured environments.
-                                            </p>
-                                            <p><a href="https://arxiv.org/abs/2505.00784" target="_blank">Paper</a> | <a href="https://modularlegs.github.io/" target="_blank">Webpage</a> | <a href="https://github.com/Chenaah/modularlegs" target="_blank">Source Code</a></p>
+                                            <div lang="en">
+                                                <h3>Reconfigurable Legged Metamachine</h3>
+                                                <h5>Spring 2024 – Present</h5>
+                                                <p><strong>Major Collaborator:</strong> <a href="https://chenyu.dev/" target="_blank">Chen Yu</a>, <a href="https://cappuccinopanda.github.io/website/" target="_blank">David Matthews</a>, <a href="https://skriegman.github.io/" target="_blank">Prof. Sam Kriegman</a></p>
+                                                <p style="text-align:justify;">
+                                                    This research introduces autonomous modular legs: agile yet minimal, single-degree-of-freedom jointed links that can learn complex dynamic behaviors and may be freely attached to form legged metamachines at the meter scale. This research enables rapid repair, redesign, and recombination of highly dynamic modular agents that move quickly and acrobatically through unstructured environments.
+                                                </p>
+                                                <p><a href="https://arxiv.org/abs/2505.00784" target="_blank">Paper</a> | <a href="https://modularlegs.github.io/" target="_blank">Webpage</a> | <a href="https://github.com/Chenaah/modularlegs" target="_blank">Source Code</a></p>
+                                            </div>
+                                            <div lang="zh">
+                                                <h3>可重构足式机器人开发</h3>
+                                                <h5>2024年春 – 至今</h5>
+                                                <p><strong>主要合作者：</strong> <a href="https://chenyu.dev/" target="_blank">余琛</a>, <a href="https://cappuccinopanda.github.io/website/" target="_blank">David Matthews</a>, <a href="https://skriegman.github.io/" target="_blank">Sam Kriegman教授</a></p>
+                                                <p style="text-align:justify;">
+                                                    该研究提出了一种新型的模块化足式机器人。该机器人单个腿单元中仅包括一个电机及相应控制通信电路，结构极简但具备高动态表现。多个单元组合后可形成更复杂的高动态机器人以适应复杂地形并实现快速重构与自我修复。
+                                                </p>
+                                                <p><a href="https://arxiv.org/abs/2505.00784" target="_blank">论文</a> | <a href="https://modularlegs.github.io/" target="_blank">项目网站</a> | <a href="https://github.com/Chenaah/modularlegs" target="_blank">源码</a></p>
+                                            </div>
                                         </div>
                                     </div><!-- /o-media o-content -->
                                 </div><!-- /o-grid__col -->
@@ -350,13 +499,24 @@
                                 <div class="o-grid__col-md-8">
                                     <div class="o-media  o-media--block  o-content">
                                         <div class="o-media__body  o-content__body">
-                                            <h3>Single Motor Spherical Robot</h3>
-                                            <h5>Fall 2023 – Present</h5>
-                                            <p><strong>Major Collaborator:</strong> <a href="https://users.cs.northwestern.edu/~mrubenst/" target="_blank">Prof. Michael Rubenstein</a>, <a href="https://chenyu.dev/" target="_blank">Chen Yu</a></p>
-                                            <p style="text-align:justify;">
-                                                This research presents Rollbot, the first spherical robot that maneuvers on a 2D plane using only a single motor. By modulating motor speed and an attached mass, it controls trajectory curvature to follow circular paths and waypoints. Rollbot has simpler construction and lower cost comparing to conventional multi-motor spherical robots, and can also serve as a fail-safe for multi-motor spherical robots.
-                                            </p>
-                                            <p><a href="https://arxiv.org/abs/2404.05120" target="_blank">Paper</a> | <a href="https://github.com/wjxway/Rollbot" target="_blank">Source Code</a> | <a href="https://www.bilibili.com/video/BV1M1YSewE2n" target="_blank">Video @ Bilibili</a></p>
+                                            <div lang="en">
+                                                <h3>Single Motor Spherical Robot</h3>
+                                                <h5>Fall 2023 – Present</h5>
+                                                <p><strong>Major Collaborator:</strong> <a href="https://users.cs.northwestern.edu/~mrubenst/" target="_blank">Prof. Michael Rubenstein</a>, <a href="https://chenyu.dev/" target="_blank">Chen Yu</a></p>
+                                                <p style="text-align:justify;">
+                                                    This research presents Rollbot, the first spherical robot that maneuvers on a 2D plane using only a single motor. By modulating motor speed and an attached mass, it controls trajectory curvature to follow circular paths and waypoints. Rollbot has simpler construction and lower cost comparing to conventional multi-motor spherical robots, and can also serve as a fail-safe for multi-motor spherical robots.
+                                                </p>
+                                                <p><a href="https://arxiv.org/abs/2404.05120" target="_blank">Paper</a> | <a href="https://github.com/wjxway/Rollbot" target="_blank">Source Code</a> | <a href="https://www.bilibili.com/video/BV1M1YSewE2n" target="_blank">Video @ Bilibili</a></p>
+                                            </div>
+                                            <div lang="zh">
+                                                <h3>单电机球形机器人</h3>
+                                                <h5>2023年秋 – 至今</h5>
+                                                <p><strong>主要合作者：</strong> <a href="https://users.cs.northwestern.edu/~mrubenst/" target="_blank">Michael Rubenstein教授</a>, <a href="https://chenyu.dev/" target="_blank">余琛</a></p>
+                                                <p style="text-align:justify;">
+                                                    该研究展示了Rollbot：首个仅使用单个电机在2D平面上机动的球形机器人。通过调制电机转速，它可以控其轨迹并实现可控运动。与传统的多电机球形机器人相比，Rollbot结构更简单、成本更低，还可以作为多电机球形机器人的失效备份。
+                                                </p>
+                                                <p><a href="https://arxiv.org/abs/2404.05120" target="_blank">论文</a> | <a href="https://github.com/wjxway/Rollbot" target="_blank">源码</a> | <a href="https://www.bilibili.com/video/BV1M1YSewE2n" target="_blank">B站视频</a></p>
+                                            </div>
                                         </div>
                                     </div><!-- /o-media o-content -->
                                 </div><!-- /o-grid__col -->
@@ -373,16 +533,30 @@
                                 <div class="o-grid__col-md-8">
                                     <div class="o-media  o-media--block  o-content">
                                         <div class="o-media__body  o-content__body">
-                                            <h3>PCB-based Minimalist Robot PCBot</h3>
-                                            <h5>Fall 2021 – Spring 2022</h5>
-                                            <p><strong>Major Collaborator:</strong> <a href="https://users.cs.northwestern.edu/~mrubenst/" target="_blank">Prof. Michael Rubenstein</a></p>
-                                            <p style="text-align:justify;">
-                                                <strong>Best paper finalist, best student paper finalist, best mechanisms and design paper finalist at IROS 2022</strong>
-                                            </p>
-                                            <p style="text-align:justify;">
-                                                This work presents PCBot, a minimalist robot driven by a PCB-integrated bi-stable solenoid actuator. This actuator simplifies manufacturing and reduces assembly time to under 20 seconds. A prototype demonstrates precise motion on an orbital shake table. This research showcases the potential of minimalist, externally-driven designs in robotics.
-                                            </p>
-                                            <p><a href="https://ieeexplore.ieee.org/abstract/document/9981377" target="_blank">Paper</a></p>
+                                            <div lang="en">
+                                                <h3>PCB-based Minimalist Robot PCBot</h3>
+                                                <h5>Fall 2021 – Spring 2022</h5>
+                                                <p><strong>Major Collaborator:</strong> <a href="https://users.cs.northwestern.edu/~mrubenst/" target="_blank">Prof. Michael Rubenstein</a></p>
+                                                <p style="text-align:justify;">
+                                                    <strong>Best paper finalist, best student paper finalist, best mechanisms and design paper finalist at IROS 2022</strong>
+                                                </p>
+                                                <p style="text-align:justify;">
+                                                    This work presents PCBot, a minimalist robot driven by a PCB-integrated bi-stable solenoid actuator. This actuator simplifies manufacturing and reduces assembly time to under 20 seconds. A prototype demonstrates precise motion on an orbital shake table. This research showcases the potential of minimalist, externally-driven designs in robotics.
+                                                </p>
+                                                <p><a href="https://ieeexplore.ieee.org/abstract/document/9981377" target="_blank">Paper</a></p>
+                                            </div>
+                                            <div lang="zh">
+                                                <h3>基于PCB的极简机器人PCBot</h3>
+                                                <h5>2021.9 – 2022.5</h5>
+                                                <p><strong>主要合作者：</strong> <a href="https://users.cs.northwestern.edu/~mrubenst/" target="_blank">Michael Rubenstein教授</a></p>
+                                                <p style="text-align:justify;">
+                                                    <strong>IROS 2022最佳论文入围奖、最佳学生论文入围奖、最佳机构与设计论文入围奖</strong>
+                                                </p>
+                                                <p style="text-align:justify;">
+                                                    该工作提出了PCBot：一种由集成于PCB内的双稳态驱动器驱动的极简机器人。该设计极大地简化了制造过程，组装时间仅20秒。该研究展示了极简、外部驱动设计在机器人学中的应用潜力。
+                                                </p>
+                                                <p><a href="https://ieeexplore.ieee.org/abstract/document/9981377" target="_blank">论文</a></p>
+                                            </div>
                                         </div>
                                     </div><!-- /o-media o-content -->
                                 </div><!-- /o-grid__col -->
@@ -399,13 +573,40 @@
                                 <div class="o-grid__col-md-8">
                                     <div class="o-media  o-media--block  o-content">
                                         <div class="o-media__body  o-content__body">
-                                            <h3>Film Grain Rendering and Parameter Estimation</h3>
-                                            <h5>Fall 2022 – Spring 2023</h5>
-                                            <p><strong>Major Collaborator:</strong> <a href="https://www.linkedin.com/in/kaixuan-zhang-731a16159/" target="_blank">Kaixuan Zhang</a>, <a href="http://users.eecs.northwestern.edu/~pappas/" target="_blank">Prof. Thrasyvoulos N. Pappas</a></p>
-                                            <p style="text-align:justify;">
-                                                This research proposes a fast film grain rendering algorithm based on analytic statistics from a physics-based Boolean model used by Newson et al. Our method estimates model parameters from scanned images and enables real-time simulation when individual grains are not visible. Experiments show a six-order speed-up over Newson et al.’s Monte Carlo approach with strong visual fidelity. This work has potential applications in film production, computer graphics, and video compression.
-                                            </p>
-                                            <p><a href="https://dl.acm.org/doi/abs/10.1145/3592127" target="_blank">Paper</a></p>
+                                            <div lang="en">
+                                                <h3>Film Grain Rendering and Parameter Estimation</h3>
+                                            </div>
+                                            <div lang="zh">
+                                                <h3>胶片颗粒渲染与参数估计</h3>
+                                            </div>
+                                            <div lang="en">
+                                                <h5>Fall 2022 – Spring 2023</h5>
+                                            </div>
+                                            <div lang="zh">
+                                                <h5>2022.9 – 2023.5</h5>
+                                            </div>
+                                            <div lang="en">
+                                                <p><strong>Major Collaborator:</strong> <a href="https://www.linkedin.com/in/kaixuan-zhang-731a16159/" target="_blank">Kaixuan Zhang</a>, <a href="http://users.eecs.northwestern.edu/~pappas/" target="_blank">Prof. Thrasyvoulos N. Pappas</a></p>
+                                            </div>
+                                            <div lang="zh">
+                                                <p><strong>主要合作者：</strong> <a href="https://www.linkedin.com/in/kaixuan-zhang-731a16159/" target="_blank">张凯旋</a>, <a href="http://users.eecs.northwestern.edu/~pappas/" target="_blank">Thrasyvoulos N. Pappas教授</a></p>
+                                            </div>
+                                            <div lang="en">
+                                                <p style="text-align:justify;">
+                                                    This research proposes a fast film grain rendering algorithm based on analytic statistics from a physics-based Boolean model used by Newson et al. Our method estimates model parameters from scanned images and enables real-time simulation when individual grains are not visible. Experiments show a six-order speed-up over Newson et al.’s Monte Carlo approach with strong visual fidelity. This work has potential applications in film production, computer graphics, and video compression.
+                                                </p>
+                                            </div>
+                                            <div lang="zh">
+                                                <p style="text-align:justify;">
+                                                    该研究提出了一种快速胶片颗粒特效的渲染算法。我们的方法允许用户从扫描图像中估计模型参数，并实现实时的胶片效果模拟。实验显示我们的方法在比Newson等人提出的蒙特卡罗方法快六个数量级的同时保持了相同的视觉保真度。该工作在电影制作、计算机图形学和视频压缩中具有潜在应用。
+                                                </p>
+                                            </div>
+                                            <div lang="en">
+                                                <p><a href="https://dl.acm.org/doi/abs/10.1145/3592127" target="_blank">Paper</a></p>
+                                            </div>
+                                            <div lang="zh">
+                                                <p><a href="https://dl.acm.org/doi/abs/10.1145/3592127" target="_blank">论文</a></p>
+                                            </div>
                                         </div>
                                     </div><!-- /o-media o-content -->
                                 </div><!-- /o-grid__col -->
@@ -422,13 +623,24 @@
                                 <div class="o-grid__col-md-8">
                                     <div class="o-media  o-media--block  o-content">
                                         <div class="o-media__body  o-content__body">
-                                            <h3>Underwater Localization System Based on Electrostatic Field</h3>
-                                            <h5>Fall 2020 – Fall 2022</h5>
-                                            <p><strong>Major Collaborator:</strong> <a href="https://scholar.google.com/citations?user=WXg0sPYAAAAJ" target="_blank">Junzheng Zheng</a>, Xin Guo, Chayutpon Huntrakul, Prof. Chen Wang, <a href="http://www2.coe.pku.edu.cn/subpaget.asp?id=58" target="_blank">Prof. Guangming Xie</a></p>
-                                            <p style="text-align:justify;">
-                                                This research presents a novel electric sense-based localization scheme for small free-swimming underwater robots in large-scale environments. Inspired by electric sensing in fish, the system uses distributed emitters and an onboard receiver to estimate position and orientation. Experiments demonstrate robust, accurate localization where vision and sonar struggle, offering a lightweight solution for constrained underwater robots.
-                                            </p>
-                                            <p><a href="https://ieeexplore.ieee.org/abstract/document/9900226" target="_blank">Paper</a></p>
+                                            <div lang="en">
+                                                <h3>Underwater Localization System Based on Electrostatic Field</h3>
+                                                <h5>Fall 2020 – Fall 2022</h5>
+                                                <p><strong>Major Collaborator:</strong> <a href="https://scholar.google.com/citations?user=WXg0sPYAAAAJ" target="_blank">Junzheng Zheng</a>, Xin Guo, Chayutpon Huntrakul, Prof. Chen Wang, <a href="http://www2.coe.pku.edu.cn/subpaget.asp?id=58" target="_blank">Prof. Guangming Xie</a></p>
+                                                <p style="text-align:justify;">
+                                                    This research presents a novel electric sense-based localization scheme for small free-swimming underwater robots in large-scale environments. Inspired by electric sensing in fish, the system uses distributed emitters and an onboard receiver to estimate position and orientation. Experiments demonstrate robust, accurate localization where vision and sonar struggle, offering a lightweight solution for constrained underwater robots.
+                                                </p>
+                                                <p><a href="https://ieeexplore.ieee.org/abstract/document/9900226" target="_blank">Paper</a></p>
+                                            </div>
+                                            <div lang="zh">
+                                                <h3>基于静电场的水下定位系统</h3>
+                                                <h5>2020.9 – 2022.9</h5>
+                                                <p><strong>主要合作者：</strong> <a href="https://scholar.google.com/citations?user=WXg0sPYAAAAJ" target="_blank">郑君正</a>, 郭信, Chayutpon Huntrakul, 王晨教授, <a href="http://www2.coe.pku.edu.cn/subpaget.asp?id=58" target="_blank">谢广明教授</a></p>
+                                                <p style="text-align:justify;">
+                                                    该研究提出了一种新颖的基于静电场的水下定位方案，并可用于复杂环境中的小型水下机器人。受鱼类电侧线的启发，该系统允许水下机器人使用多个发射器和接收器来估计其自身的位置和方向。我们通过实验证明了该系统在视觉和声纳难以发挥作用的环境仍可实现鲁棒、准确的定位。
+                                                </p>
+                                                <p><a href="https://ieeexplore.ieee.org/abstract/document/9900226" target="_blank">论文</a></p>
+                                            </div>
                                         </div>
                                     </div><!-- /o-media o-content -->
                                 </div><!-- /o-grid__col -->
@@ -444,13 +656,24 @@
                                 <div class="o-grid__col-md-8">
                                     <div class="o-media  o-media--block  o-content">
                                         <div class="o-media__body  o-content__body">
-                                            <h3>Realistic Black Hole Accretion Disk Rendering</h3>
-                                            <h5>Fall 2019 – Spring 2020</h5>
-                                            <p><strong>Major Collaborator:</strong> <a href="https://faculty.pku.edu.cn/chenbin1/zh_CN/index.htm" target="_blank">Prof. Bin Chen</a></p>
-                                            <p style="text-align:justify;">
-                                                This paper introduces a double ray-tracing method for fast, physically accurate rendering of accretion disks near spherical spacetimes and used it to render the Schwarzschild black holes and JMN-1 naked singularities.
-                                            </p>
-                                            <p><a href="https://github.com/wjxway/Realistic_Blackhole_Accretion_Disk/blob/master/%E6%AF%95%E4%B8%9A%E8%AE%BA%E6%96%87_%E7%8E%8B%E7%AB%9E%E5%85%88.pdf" target="_blank">Report</a> | <a href="https://github.com/wjxway/Realistic_Blackhole_Accretion_Disk" target="_blank">Source Code</a> | <a href="https://www.bilibili.com/video/BV1Fp4y1S7EF" target="_blank">Video @ Bilibili</a> | <a href="https://www.youtube.com/watch?v=Dux1NkTaqwo" target="_blank">Video @ YouTube</a></p>
+                                            <div lang="en">
+                                                <h3>Realistic Black Hole Accretion Disk Rendering</h3>
+                                                <h5>Fall 2019 – Spring 2020</h5>
+                                                <p><strong>Major Collaborator:</strong> <a href="https://faculty.pku.edu.cn/chenbin1/zh_CN/index.htm" target="_blank">Prof. Bin Chen</a></p>
+                                                <p style="text-align:justify;">
+                                                    This paper introduces a double ray-tracing method for fast, physically accurate rendering of accretion disks near spherical spacetimes and used it to render the Schwarzschild black holes and JMN-1 naked singularities.
+                                                </p>
+                                                <p><a href="https://github.com/wjxway/Realistic_Blackhole_Accretion_Disk/blob/master/%E6%AF%95%E4%B8%9A%E8%AE%BA%E6%96%87_%E7%8E%8B%E7%AB%9E%E5%85%88.pdf" target="_blank">Report</a> | <a href="https://github.com/wjxway/Realistic_Blackhole_Accretion_Disk" target="_blank">Source Code</a> | <a href="https://www.bilibili.com/video/BV1Fp4y1S7EF" target="_blank">Video @ Bilibili</a> | <a href="https://www.youtube.com/watch?v=Dux1NkTaqwo" target="_blank">Video @ YouTube</a></p>
+                                            </div>
+                                            <div lang="zh">
+                                                <h3>真实黑洞吸积盘渲染</h3>
+                                                <h5>2019.9 – 2020.5</h5>
+                                                <p><strong>主要合作者：</strong> <a href="https://faculty.pku.edu.cn/chenbin1/zh_CN/index.htm" target="_blank">陈斌教授</a></p>
+                                                <p style="text-align:justify;">
+                                                    该论文介绍了一种双重光线追踪方法，可以快速、物理精确地渲染黑洞和JMI-1裸奇点附近的吸积盘。
+                                                </p>
+                                                <p><a href="https://github.com/wjxway/Realistic_Blackhole_Accretion_Disk/blob/master/%E6%AF%95%E4%B8%9A%E8%AE%BA%E6%96%87_%E7%8E%8B%E7%AB%9E%E5%85%88.pdf" target="_blank">报告</a> | <a href="https://github.com/wjxway/Realistic_Blackhole_Accretion_Disk" target="_blank">源码</a> | <a href="https://www.bilibili.com/video/BV1Fp4y1S7EF" target="_blank">B站视频</a>
+                                            </div>
                                         </div>
                                     </div><!-- /o-media o-content -->
                                 </div><!-- /o-grid__col -->
@@ -466,12 +689,22 @@
                                 <div class="o-grid__col-md-8">
                                     <div class="o-media  o-media--block  o-content">
                                         <div class="o-media__body  o-content__body">
-                                            <h3>Light-actuated Soft Flying Robot</h3>
-                                            <h5>Fall 2018 – Spring 2021</h5>
-                                            <p><strong>Major Collaborator:</strong> Dr. Shudeng Ma, <a href="http://www2.coe.pku.edu.cn/subpaget.asp?id=58" target="_blank">Prof. Guangming Xie</a></p>
-                                            <p style="text-align:justify;">
-                                                This research explores light-actuated soft flying robots using liquid crystal polymer films driven by projected light. Although the method failed due to material softening under high light intensity, it revealed key insights into light-based actuation.
-                                            </p>
+                                            <div lang="en">
+                                                <h3>Light-actuated Soft Flying Robot</h3>
+                                                <h5>Fall 2018 – Spring 2021</h5>
+                                                <p><strong>Major Collaborator:</strong> Dr. Shudeng Ma, <a href="http://www2.coe.pku.edu.cn/subpaget.asp?id=58" target="_blank">Prof. Guangming Xie</a></p>
+                                                <p style="text-align:justify;">
+                                                    This research explores light-actuated soft flying robots using liquid crystal polymer films driven by projected light. Although the method failed due to material softening under high light intensity, it revealed key insights into light-based actuation.
+                                                </p>
+                                            </div>
+                                            <div lang="zh">
+                                                <h3>光驱动软体飞行机器人</h3>
+                                                <h5>2018.9 – 2021.5</h5>
+                                                <p><strong>主要合作者：</strong> 马树灯博士, <a href="http://www2.coe.pku.edu.cn/subpaget.asp?id=58" target="_blank">谢广明教授</a></p>
+                                                <p style="text-align:justify;">
+                                                    该研究探索了基于液晶聚合物薄膜制作光驱动软体飞行机器人的可能性。虽然最终由于液晶材料在高光强度下急剧软化现象而导致项目失败，但我仍认为这是一次有趣的尝试。
+                                                </p>
+                                            </div>
                                         </div>
                                     </div><!-- /o-media o-content -->
                                 </div><!-- /o-grid__col -->
@@ -487,12 +720,22 @@
                                 <div class="o-grid__col-md-8">
                                     <div class="o-media  o-media--block  o-content">
                                         <div class="o-media__body  o-content__body">
-                                            <h3>Construction of Optical Tweezer System</h3>
-                                            <h5>Fall 2018 – Spring 2020</h5>
-                                            <p><strong>Major Collaborator:</strong> <a href="https://engineering.mit.edu/fellows/qiuyuan-wang/" target="_blank">Qiuyuan Wang</a>, <a href="https://faculty.pku.edu.cn/yangjing/zh_CN/index.htm" target="_blank">Prof. Jing Yang</a></p>
-                                            <p style="text-align:justify;">
-                                                This work focuses on the construction of an optical tweezer with a trapping strength measurement system. We also investigated the possibility for phase-adjustable SPPs optical tweezer array.
-                                            </p>
+                                            <div lang="en">
+                                                <h3>Construction of Optical Tweezer System</h3>
+                                                <h5>Fall 2018 – Spring 2020</h5>
+                                                <p><strong>Major Collaborator:</strong> <a href="https://engineering.mit.edu/fellows/qiuyuan-wang/" target="_blank">Qiuyuan Wang</a>, <a href="https://faculty.pku.edu.cn/yangjing/zh_CN/index.htm" target="_blank">Prof. Jing Yang</a></p>
+                                                <p style="text-align:justify;">
+                                                    This work focuses on the construction of an optical tweezer with a trapping strength measurement system. We also investigated the possibility for phase-adjustable SPPs optical tweezer array.
+                                                </p>
+                                            </div>
+                                            <div lang="zh">
+                                                <h3>光学镊子系统构建</h3>
+                                                <h5>2018.9 – 2020.5</h5>
+                                                <p><strong>主要合作者：</strong> <a href="https://engineering.mit.edu/fellows/qiuyuan-wang/" target="_blank">王秋原</a>, <a href="https://faculty.pku.edu.cn/yangjing/zh_CN/index.htm" target="_blank">杨景教授</a></p>
+                                                <p style="text-align:justify;">
+                                                    该工作构建了具有捕获强度测量系统的光镊。我们还研究了相位可调SPPs光镊阵列的可能性。
+                                                </p>
+                                            </div>
                                         </div>
                                     </div><!-- /o-media o-content -->
                                 </div><!-- /o-grid__col -->
@@ -508,13 +751,24 @@
                                 <div class="o-grid__col-md-8">
                                     <div class="o-media  o-media--block  o-content">
                                         <div class="o-media__body  o-content__body">
-                                            <h3>Distributed Localization Without Direct Communication Inspired by Statistical Mechanics</h3>
-                                            <h5>Fall 2016 – Fall 2018</h5>
-                                            <p><strong>Major Collaborator:</strong> <a href="https://orcid.org/0009-0008-1005-0171" target="_blank">Tianye Wang</a></p>
-                                            <p style="text-align:justify;">
-                                                This research proposes a distributed localization algorithm where robots estimate positions by exchanging virtual particles via sensor data only. It enables accurate, anchor-free localization and shape formation, validated in both simulation and real-world swarms.
-                                            </p>
-                                            <p><a href="https://arxiv.org/abs/2006.02658" target="_blank">Paper</a></p>
+                                            <div lang="en">
+                                                <h3>Distributed Localization Without Direct Communication Inspired by Statistical Mechanics</h3>
+                                                <h5>Fall 2016 – Fall 2018</h5>
+                                                <p><strong>Major Collaborator:</strong> <a href="https://orcid.org/0009-0008-1005-0171" target="_blank">Tianye Wang</a></p>
+                                                <p style="text-align:justify;">
+                                                    This research proposes a distributed localization algorithm where robots estimate positions by exchanging virtual particles via sensor data only. It enables accurate, anchor-free localization and shape formation, validated in both simulation and real-world swarms.
+                                                </p>
+                                                <p><a href="https://arxiv.org/abs/2006.02658" target="_blank">Paper</a></p>
+                                            </div>
+                                            <div lang="zh">
+                                                <h3>受统计力学启发的无直接通信分布式定位</h3>
+                                                <h5>2016.9 – 2018.9</h5>
+                                                <p><strong>主要合作者：</strong> <a href="https://orcid.org/0009-0008-1005-0171" target="_blank">王天冶</a></p>
+                                                <p style="text-align:justify;">
+                                                    该研究提出了一种分布式定位算法，机器人仅通过传感器交换“虚拟粒子”来估计位置，而无需机器人间通讯。它实现了准确的无锚点定位和形状生成，算法和设计的有效性在仿真和自己设计的无人车群中得到了验证。
+                                                </p>
+                                                <p><a href="https://arxiv.org/abs/2006.02658" target="_blank">论文</a></p>
+                                            </div>
                                         </div>
                                     </div><!-- /o-media o-content -->
                                 </div><!-- /o-grid__col -->
@@ -544,7 +798,8 @@
                         <header class="o-section__header  t-section__header">
                             <div class="o-content">
                                 <h2 class="o-section__heading">
-                                    Publications & Patents
+                                    <span lang="en">Publications & Patents</span>
+                                    <span lang="zh">论文与专利</span>
                                 </h2>
                                 <div class="o-content__body  o-section__description">
                                     <!-- Research publications and patents -->
@@ -663,7 +918,8 @@
                         <header class="o-section__header  t-section__header">
                             <div class="o-content">
                                 <h2 class="o-section__heading">
-                                    Education
+                                    <span lang="en">Education</span>
+                                    <span lang="zh">教育背景</span>
                                 </h2>
                                 <div class="o-content__body  o-section__description">
                                     <!-- Educational background -->
@@ -683,25 +939,41 @@
                                         <div class="o-grid">
                                             <div class="o-grid__col-md-5">
                                                 <div class="c-work__timeframe">
-                                                    Sept. 2021 &ndash; Present 
+                                                    <span lang="en">Sept. 2021 &ndash; Present</span>
+                                                    <span lang="zh">2021.9 &ndash; 至今</span>
                                                 </div>
                                                 <h3 class="c-work__heading">
-                                                    <a href="https://www.northwestern.edu/" target="_blank">Northwestern University</a>
+                                                    <a href="https://www.northwestern.edu/" target="_blank">
+                                                        <span lang="en">Northwestern University</span>
+                                                        <span lang="zh">美国西北大学</span>
+                                                    </a>
                                                 </h3>
                                                 <h4 class="c-work__title">
-                                                    Ph.D. in Mechanical Engineering
+                                                    <span lang="en">Ph.D. in Mechanical Engineering</span>
+                                                    <span lang="zh">机械工程博士</span>
                                                 </h4>
                                                 <div class="c-work__location">
-                                                    Evanston, IL
+                                                    <span lang="en">Evanston, IL</span>
+                                                    <span lang="zh">美国，伊利诺伊州</span>
                                                 </div>
                                             </div>
                                             <div class="o-grid__col-md-7">
-                                                <p>
-                                                    <strong>Advisor</strong>: Prof. Michael Rubenstein.
-                                                </p>
-                                                <p>
-                                                    <strong>Research focus</strong>: full-stack novel robot design, minimalism in robotics, swarm robot, modular robot.
-                                                </p>
+                                                <div lang="en">
+                                                    <p>
+                                                        <strong>Advisor</strong>: Prof. Michael Rubenstein.
+                                                    </p>
+                                                    <p>
+                                                        <strong>Research focus</strong>: full-stack novel robot design, minimalism in robotics, swarm robot, modular robot.
+                                                    </p>
+                                                </div>
+                                                <div lang="zh">
+                                                    <p>
+                                                        <strong>导师</strong>：Michael Rubenstein教授
+                                                    </p>
+                                                    <p>
+                                                        <strong>研究方向</strong>：全栈新型机器人设计、极简机器人、集群机器人、模块化机器人
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div><!-- /o-grid -->
                                     </div><!-- /o-content -->
@@ -713,22 +985,37 @@
                                         <div class="o-grid">
                                             <div class="o-grid__col-md-5">
                                                 <div class="c-work__timeframe">
-                                                    Sept. 2017 &ndash; July 2021
+                                                    <span lang="en">Sept. 2017 &ndash; July 2021</span>
+                                                    <span lang="zh">2017.9 &ndash; 2021.7</span>
                                                 </div>
                                                 <h3 class="c-work__heading">
-                                                    <a href="https://english.pku.edu.cn/" target="_blank">Peking University</a>
+                                                    <a href="https://english.pku.edu.cn/" target="_blank">
+                                                        <span lang="en">Peking University</span>
+                                                        <span lang="zh">北京大学</span>
+                                                    </a>
                                                 </h3>
                                                 <h4 class="c-work__title">
-                                                    B.S. in Physics
+                                                    <span lang="en">B.S. in Physics</span>
+                                                    <span lang="zh">物理学学士</span>
                                                 </h4>
                                                 <div class="c-work__location">
-                                                    Beijing, China
+                                                    <span lang="en">Beijing, China</span>
+                                                    <span lang="zh">中国，北京</span>
                                                 </div>
                                             </div>
                                             <div class="o-grid__col-md-7">
-                                                <p>
-                                                    <strong>Major courses</strong>: Theoretical Mechanics, Electrodynamics, Quantum Mechanics, Computational Physics, Modern Physics Lab I and II.
-                                                </p>
+                                                <div lang="en">
+                                                    <p>
+                                                        <strong>Major courses</strong>: Theoretical Mechanics, Electrodynamics, Quantum Mechanics, Thermal Physics, Optics, Computational Physics, Modern Physics Lab I and II, Theory of Elasticity, Computational Fluid Mechanics, etc.
+                                                    </p>
+                                                </div>
+                                                <div lang="zh">
+                                                    <p>
+                                                        <strong>主要课程</strong>：理论力学、电动力学、量子力学、热学、光学、计算物理、近代物理实验 I & II、
+电子线路与实验、弹性力学、计算流体力学等
+
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div><!-- /o-grid -->
                                     </div><!-- /o-content -->
@@ -763,7 +1050,8 @@
                         <header class="o-section__header  t-section__header">
                             <div class="o-content">
                                 <h2 class="o-section__heading">
-                                    Awards & Honors
+                                    <span lang="en">Awards & Honors</span>
+                                    <span lang="zh">曾获奖项</span>
                                 </h2>
                                 <div class="o-content__body  o-section__description">
                                     <!-- Recognition and achievements -->
@@ -779,10 +1067,18 @@
                                     <div class="o-content">
                                         <hr class="c-deco-line  t-primary-color-line" />
                                         <div class="o-content__body">
-                                            <h3>IROS 2022 Best Paper Award Finalist</h3>
-                                            <p>Best Paper Finalist</p> 
-                                            <p>Best Student Paper Finalist</p>
-                                            <p>Best Mechanisms and Design Paper Finalist</p>
+                                            <div lang="en">
+                                                <h3>IROS 2022 Best Paper Award Finalist</h3>
+                                                <p>Best Paper Finalist</p> 
+                                                <p>Best Student Paper Finalist</p>
+                                                <p>Best Mechanisms and Design Paper Finalist</p>
+                                            </div>
+                                            <div lang="zh">
+                                                <h3>IROS 2022最佳论文奖入围</h3>
+                                                <p>最佳论文奖入围</p> 
+                                                <p>最佳学生论文奖入围</p>
+                                                <p>最佳机构与设计论文奖入围</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div><!-- /o-grid__col -->
@@ -791,8 +1087,14 @@
                                     <div class="o-content">
                                         <hr class="c-deco-line  t-primary-color-line" />
                                         <div class="o-content__body">
-                                            <h3>PKU Scholar in Physics</h3>
-                                            <p>Peking University, 2021</p>
+                                            <div lang="en">
+                                                <h3>PKU Scholar in Physics</h3>
+                                                <p>Peking University, 2021</p>
+                                            </div>
+                                            <div lang="zh">
+                                                <h3>北大物理学子</h3>
+                                                <p>北京大学，2021</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div><!-- /o-grid__col -->
@@ -801,9 +1103,16 @@
                                     <div class="o-content">
                                         <hr class="c-deco-line  t-primary-color-line" />
                                         <div class="o-content__body">
-                                            <h3>Outstanding Research Project Award</h3>
-                                            <p>Awarded for "Light-actuated soft flying robot"</p>
-                                            <p>School of Engineering, Peking University, 2021</p>
+                                            <div lang="en">
+                                                <h3>Outstanding Research Project Award</h3>
+                                                <p>Awarded for "Light-actuated soft flying robot"</p>
+                                                <p>School of Engineering, Peking University, 2021</p>
+                                            </div>
+                                            <div lang="zh">
+                                                <h3>优秀科研项目奖</h3>
+                                                <p>获奖项目："光驱动软体飞行机器人"</p>
+                                                <p>北京大学工学院，2021</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div><!-- /o-grid__col -->
@@ -812,8 +1121,14 @@
                                     <div class="o-content">
                                         <hr class="c-deco-line  t-primary-color-line" />
                                         <div class="o-content__body">
-                                            <h3>Wenxin Zhang Scholarship</h3>
-                                            <p>Peking University, 2020</p>
+                                            <div lang="en">
+                                                <h3>Wenxin Zhang Scholarship</h3>
+                                                <p>Peking University, 2020</p>
+                                            </div>
+                                            <div lang="zh">
+                                                <h3>张文新奖学金</h3>
+                                                <p>北京大学，2020</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div><!-- /o-grid__col -->
@@ -822,8 +1137,14 @@
                                     <div class="o-content">
                                         <hr class="c-deco-line  t-primary-color-line" />
                                         <div class="o-content__body">
-                                            <h3>Award for Outstanding Research</h3>
-                                            <p>Peking University, 2019</p>
+                                            <div lang="en">
+                                                <h3>Award for Outstanding Research</h3>
+                                                <p>Peking University, 2019</p>
+                                            </div>
+                                            <div lang="zh">
+                                                <h3>杰出科研奖</h3>
+                                                <p>北京大学，2019</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div><!-- /o-grid__col -->
@@ -832,8 +1153,14 @@
                                     <div class="o-content">
                                         <hr class="c-deco-line  t-primary-color-line" />
                                         <div class="o-content__body">
-                                            <h3>Pivot of Merit Student</h3>
-                                            <p>Peking University, 2018</p>
+                                            <div lang="en">
+                                                <h3>Pivot of Merit Student</h3>
+                                                <p>Peking University, 2018</p>
+                                            </div>
+                                            <div lang="zh">
+                                                <h3>三好学生</h3>
+                                                <p>北京大学，2018</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div><!-- /o-grid__col -->
@@ -842,9 +1169,16 @@
                                     <div class="o-content">
                                         <hr class="c-deco-line  t-primary-color-line" />
                                         <div class="o-content__body">
-                                            <h3>Leo Koguan Scholarship</h3>
-                                            <p>6th place out of 201 students</p>
-                                            <p>Peking University, 2018</p>
+                                            <div lang="en">
+                                                <h3>Leo Koguan Scholarship</h3>
+                                                <p>6th place out of 201 students</p>
+                                                <p>Peking University, 2018</p>
+                                            </div>
+                                            <div lang="zh">
+                                                <h3>廖凯原奖学金</h3>
+                                                <p>全年级第6</p>
+                                                <p>北京大学，2018</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div><!-- /o-grid__col -->
@@ -853,9 +1187,15 @@
                                     <div class="o-content">
                                         <hr class="c-deco-line  t-primary-color-line" />
                                         <div class="o-content__body">
-                                            <h3>Freshman Scholarship</h3>
-                                            <p>Second Prize</p>
-                                            <p>Peking University, 2017</p>
+                                            <div lang="en">
+                                                <h3>Freshman Scholarship</h3>
+                                                <p>Second Prize</p>
+                                                <p>Peking University, 2017</p>
+                                            </div>
+                                            <div lang="zh">
+                                                <h3>新生二等奖学金</h3>
+                                                <p>北京大学，2017</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div><!-- /o-grid__col -->
@@ -864,8 +1204,14 @@
                                     <div class="o-content">
                                         <hr class="c-deco-line  t-primary-color-line" />
                                         <div class="o-content__body">
-                                            <h3>Gold Medal in Asian Physics Olympiad</h3>
-                                            <p>18th Asian Physics Olympiad (APhO), 2017</p>
+                                            <div lang="en">
+                                                <h3>Gold Medal in Asian Physics Olympiad</h3>
+                                                <p>18th Asian Physics Olympiad (APhO), 2017</p>
+                                            </div>
+                                            <div lang="zh">
+                                                <h3>亚洲物理奥林匹克竞赛金牌</h3>
+                                                <p>第18届亚洲物理奥林匹克竞赛(APhO)，2017</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div><!-- /o-grid__col -->
@@ -895,7 +1241,8 @@
                         <header class="o-section__header  t-section__header">
                             <div class="o-content">
                                 <h2 class="o-section__heading">
-                                    Professional Skills
+                                    <span lang="en">Professional Skills</span>
+                                    <span lang="zh">专业技能</span>
                                 </h2>
                                 <div class="o-content__body  o-section__description">
                                     <!-- Technical expertise and capabilities -->
@@ -907,23 +1254,44 @@
                             
                             <div class="o-content">
                                 <div class="o-content__body">
-                                    <p><strong>Specialty:</strong> Architecting and analyzing novel robot systems, rapid prototyping of hardware and algorithms, multi-paradigm data processing.</p>
-                                    
-                                    <p><strong>Advantages:</strong> Extensive experience in novel system design and software-hardware joint development, exposure to latest ideas in robotics, solid background in physics.</p>
-                                    
-                                    <p><strong>Technical Skills:</strong></p>
-                                    <ul>
-                                        <li>Proficient in embedded system design and embedded programming in C/C++, especially on ESP32 platform</li>
-                                        <li>Proficient in CAD with Autodesk Fusion/Inventor</li>
-                                        <li>Proficient in circuit design and validation using LTSpice or TINA</li>
-                                        <li>Proficient in PCB drawing using Autodesk Eagle PCB</li>
-                                        <li>Highly proficient in using Wolfram Mathematica for regular programming, equation solving, publication-quality visualization, data and image processing, 3D modeling and printing</li>
-                                        <li>Experienced in FPGA design in Verilog</li>
-                                        <li>Experienced in simulation software like COMSOL or Ansys Fluent</li>
-                                        <li>Experienced in software like LaTeX, Python, etc.</li>
-                                    </ul>
-                                    
-                                    <p><strong>English Proficiency:</strong> TOEFL iBT 114 (out of 120), GRE 327 (out of 340).</p>
+                                    <div lang="en">
+                                        <p><strong>Specialty:</strong> Architecting and analyzing novel robot systems, rapid prototyping of hardware and algorithms, multi-paradigm data processing.</p>
+                                        
+                                        <p><strong>Advantages:</strong> Extensive experience in novel system design and software-hardware joint development, exposure to latest ideas in robotics, solid background in physics.</p>
+                                        
+                                        <p><strong>Technical Skills:</strong></p>
+                                        <ul>
+                                            <li>Highly proficient in using Wolfram Mathematica for regular programming, equation solving, publication-quality visualization, data and image processing, 3D modeling and printing</li>
+                                            <li>Proficient in embedded system design and embedded programming in C/C++, especially on ESP32 platform</li>
+                                            <li>Proficient in CAD with Autodesk Fusion/Inventor</li>
+                                            <li>Proficient in circuit design and validation using LTSpice or TINA</li>
+                                            <li>Proficient in PCB drawing using Autodesk Eagle PCB</li>
+                                            <li>Experienced in FPGA design in Verilog</li>
+                                            <li>Experienced in simulation software like COMSOL or Ansys Fluent</li>
+                                            <li>Experienced in software like LaTeX, Python, etc.</li>
+                                        </ul>
+                                        
+                                        <p><strong>English Proficiency:</strong> TOEFL iBT 114 (out of 120), GRE 327 (out of 340).</p>
+                                    </div>
+                                    <div lang="zh">
+                                        <p><strong>专业特长：</strong>新型机器人系统的架构与分析、硬件与算法的快速原型设计、多范式数据处理。</p>
+                                        
+                                        <p><strong>优势：</strong>在新型系统设计和软硬件联合开发方面有丰富经验，熟知机器人学前沿理念，具有扎实的物理学背景。</p>
+                                        
+                                        <p><strong>技术技能：</strong></p>
+                                        <ul>
+                                            <li>精通 Wolfram Mathematica ，可用于常规编程、方程求解、出版级可视化、数据和图像处理、3D建模和打印等</li>
+                                            <li>熟练掌握嵌入式系统设计和 C/C++ 嵌入式编程。尤其熟悉 ESP32 平台</li>
+                                            <li>熟练掌握 Autodesk Fusion/Inventor（CAD 设计）</li>
+                                            <li>熟练掌握 LTSpice 或 TINA（电路设计和验证）</li>
+                                            <li>熟练掌握 Autodesk Eagle PCB（PCB 绘制）</li>
+                                            <li>掌握 Verilog（FPGA 设计）</li>
+                                            <li>掌握 COMSOL或Ansys Fluent等仿真软件</li>
+                                            <li>掌握 LaTeX、Python等工作常用软件</li>
+                                        </ul>
+                                        
+                                        <p><strong>英语水平：</strong>托福iBT 114分（满分120分），GRE 327分（满分340分）。</p>
+                                    </div>
                                 </div>
                             </div>
 
@@ -951,7 +1319,8 @@
                         <header class="o-section__header  t-section__header">
                             <div class="o-content">
                                 <h2 class="o-section__heading">
-                                    Contact
+                                    <span lang="en">Contact</span>
+                                    <span lang="zh">联系方式</span>
                                 </h2>
                                 <div class="o-content__body  o-section__description">
                                     <!-- Get in touch -->
@@ -967,14 +1336,26 @@
                                     <div class="o-grid__col-md-3  o-grid__col-sm-6">
                                         <div class="o-content">
                                             <div class="o-content__body">
-                                                <a href="https://maps.google.com/?q=Evanston,IL,USA" target="_blank" class="t-link-container">
-                                                    <h4>Location</h4>
-                                                    <p>
-                                                        <span class="t-link-container__item--blended">
-                                                            Evanston, IL, USA
-                                                        </span>
-                                                    </p>
-                                                </a><!-- /o-link-container -->
+                                                <span lang="en">
+                                                    <a href="https://maps.google.com/?q=Evanston,IL,USA" target="_blank" class="t-link-container">
+                                                        <h4>Location</h4>
+                                                        <p>
+                                                            <span class="t-link-container__item--blended">
+                                                                Evanston, IL, USA
+                                                            </span>
+                                                        </p>
+                                                    </a><!-- /o-link-container -->
+                                                </span>
+                                                <span lang="zh">
+                                                    <a href="https://map.baidu.com/poi/%E5%9F%83%E6%96%87%E6%96%AF%E9%A1%BF/@-9761453.416697223,5139212.2748521175,15.4z" target="_blank" class="t-link-container">
+                                                        <h4>地址</h4>
+                                                        <p>
+                                                            <span class="t-link-container__item--blended">
+                                                                美国，伊利诺伊州
+                                                            </span>
+                                                        </p>
+                                                    </a><!-- /o-link-container -->
+                                                </span>
                                             </div>
                                         </div>
                                     </div><!-- /o-grid__col -->
@@ -982,14 +1363,26 @@
                                     <div class="o-grid__col-md-5  o-grid__col-sm-6">
                                         <div class="o-content">
                                             <div class="o-content__body">
-                                                <a href="mailto:jingxianwang2026@u.northwestern.edu" target="_blank" class="t-link-container">
-                                                    <h4>Email</h4>
-                                                    <p>
-                                                        <span class="t-link-container__item--blended">
-                                                            jingxianwang2026@u.northwestern.edu
-                                                        </span>
-                                                    </p>
-                                                </a><!-- /o-link-container -->
+                                                <span lang="en">
+                                                    <a href="mailto:jingxianwang2026@u.northwestern.edu" target="_blank" class="t-link-container">
+                                                        <h4>Email</h4>
+                                                        <p>
+                                                            <span class="t-link-container__item--blended">
+                                                                jingxianwang2026@u.northwestern.edu
+                                                            </span>
+                                                        </p>
+                                                    </a><!-- /o-link-container -->
+                                                </span>
+                                                <span lang="zh">
+                                                    <a href="mailto:wjxway@163.com" target="_blank" class="t-link-container">
+                                                        <h4>邮箱</h4>
+                                                        <p>
+                                                            <span class="t-link-container__item--blended">
+                                                                wjxway@163.com
+                                                            </span>
+                                                        </p>
+                                                    </a><!-- /o-link-container -->
+                                                </span>
                                             </div>
                                         </div>
                                     </div><!-- /o-grid__col -->
@@ -998,7 +1391,7 @@
                                         <div class="o-content">
                                             <div class="o-content__body">
                                                 <a href="tel:+1-872-810-5660" target="_blank" class="t-link-container">
-                                                    <h4>Phone</h4>
+                                                    <h4><span lang="en">Phone</span><span lang="zh">电话</span></h4>
                                                     <p>
                                                         <span class="t-link-container__item--blended">
                                                             +1-(872)-810-5660
@@ -1016,7 +1409,10 @@
 
                                 <div class="o-content">
                                     <div class="c-footer__bottom">
-                                        <p>&copy; 2025 Jingxian Wang. All rights reserved.</p>
+                                        <p>
+                                            <span lang="en">&copy; 2025 Jingxian Wang. All rights reserved.</span>
+                                            <span lang="zh">&copy; 2025 王竞先. 版权所有.</span>
+                                        </p>
                                     </div><!-- /c-footer__bottom -->
                                 </div><!-- /o-content -->
 
@@ -1030,6 +1426,45 @@
 
 
         </div><!-- /c-main-container -->
+
+        <!-- Language Switch JavaScript -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const langButtons = document.querySelectorAll('.lang-option');
+                const body = document.body;
+                
+                // Load saved language preference or default to English
+                const savedLang = localStorage.getItem('preferred-language') || 'en';
+                switchLanguage(savedLang);
+                
+                langButtons.forEach(button => {
+                    button.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const lang = this.getAttribute('data-lang');
+                        switchLanguage(lang);
+                        localStorage.setItem('preferred-language', lang);
+                    });
+                });
+                
+                function switchLanguage(lang) {
+                    console.log('Switching to language:', lang);
+                    // Update body data attribute
+                    body.setAttribute('data-lang', lang);
+                    
+                    // Update active button
+                    langButtons.forEach(btn => {
+                        btn.classList.remove('active');
+                        if (btn.getAttribute('data-lang') === lang) {
+                            btn.classList.add('active');
+                        }
+                    });
+                    
+                    // Update HTML lang attribute
+                    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+                    console.log('Body data-lang:', body.getAttribute('data-lang'));
+                }
+            });
+        </script>
 
     </body>
 
