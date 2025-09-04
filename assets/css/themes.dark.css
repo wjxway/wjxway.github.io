@@ -96,13 +96,11 @@ hr,
 }
 
 .t-title__first-word {
-  text-transform: lowercase;
-  font-weight: 300;
+  font-weight: 500;
 }
 
 .t-title__second-word {
-  text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .t-sub-title {

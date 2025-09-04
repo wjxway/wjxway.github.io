@@ -9,10 +9,10 @@ $(document).ready(function() {
     setup_dense();
 
     $(window).load(function() {
-        $(".js-preloader").fadeOut(800, function() {
-            $(".js-main-container").fadeIn(800);
+        $(".js-preloader").fadeOut(400, function() {
+            $(".js-main-container").fadeIn(400);
 
-            setup_scrollreveal();
+            // setup_scrollreveal();
             setup_progress_bar_animation();
         });
     });
