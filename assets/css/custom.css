@@ -3,3 +3,28 @@
  *
  * Here you can add your custom CSS code.
  */
+
+.fas,
+.fab {
+	font-style: normal;
+}
+
+.fas.fa-graduation-cap::before {
+	content: "\f19d";
+}
+
+.fab.fa-linkedin::before {
+	content: "\f08c";
+}
+
+.fab.fa-github::before {
+	content: "\f09b";
+}
+
+.fas.fa-envelope::before {
+	content: "\f0e0";
+}
+
+.fas.fa-phone::before {
+	content: "\f095";
+}
